@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>모바일 청첩장 샘플</title>
+  <meta name="description" content="저희 결혼합니다. 소중한 분들을 초대합니다." />
+
+  <!-- 카카오톡/문자 링크 미리보기용: 배포 후 실제 URL로 바꾸세요 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="신랑 ♥ 신부 결혼합니다" />
+  <meta property="og:description" content="2026년 11월 15일 일요일 오후 12시 · 청주 아름다운웨딩홀" />
+  <meta property="og:image" content="https://cnd3942.github.io/wedding/images/cover.jpg" />
+  <meta property="og:url" content="https://cnd3942.github.io/wedding/" />
+
+  <style>
+    :root{
+      --bg:#fbf7f1; --paper:#fffaf4; --ink:#2d2926; --muted:#82776e; --line:#eadfd4; --accent:#9b7a5b;
+      --shadow:0 14px 40px rgba(65,45,25,.13);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;line-height:1.65}
+    .page{max-width:430px;margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
+    .hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:#d8c6b1}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.1) 42%,rgba(0,0,0,.62)),url('images/cover.jpg');background-size:cover;background-position:center}
+    .hero-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:34px;text-align:center;color:rgba(255,255,255,.82);font-size:13px;letter-spacing:.08em}
+    .hero-content{position:absolute;left:0;right:0;bottom:54px;text-align:center;color:white;padding:0 28px;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+    .eyebrow{font-size:11px;letter-spacing:.28em;font-weight:700;margin-bottom:14px}
+    .names{font-family:Georgia,serif;font-style:italic;font-size:42px;line-height:1.1;margin:0 0 12px}
+    .date{font-size:16px;letter-spacing:.22em;font-weight:700}
+    .scroll{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,.8)}
+    section{padding:54px 24px;border-bottom:1px solid var(--line)}
+    .center{text-align:center}.small{color:var(--muted);font-size:14px}.title{font-family:Georgia,serif;font-size:27px;margin:0 0 18px;letter-spacing:.02em}.ko-title{font-size:20px;font-weight:700;margin:0 0 18px}.message{font-size:15px;color:#4b433d}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+    .info-row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid #f1e8df;font-size:15px}.info-row:last-child{border-bottom:0}.info-row b{white-space:nowrap;color:#67513d}
+    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:18px}.calendar div{text-align:center;font-size:12px;color:#8c8179;padding:7px 0}.calendar .day{background:#fff;border-radius:12px}.calendar .wedding{background:#3a3029;color:#fff;font-weight:700;box-shadow:var(--shadow)}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo{aspect-ratio:1/1.25;border-radius:18px;background:linear-gradient(135deg,#c9b39d,#f5eadf);display:grid;place-items:center;color:#fff;font-size:12px;text-align:center;padding:12px;overflow:hidden}.photo.wide{grid-column:span 2;aspect-ratio:1.7/1}
+    .mapbox{height:230px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#e8ded2,#cdbba8);position:relative;border:1px solid var(--line)}
+    .pin{position:absolute;left:50%;top:48%;transform:translate(-50%,-100%);font-size:42px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}.map-label{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(255,255,255,.92);border-radius:16px;padding:14px;font-size:14px;box-shadow:var(--shadow)}
+    .buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.btn{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:15px;background:#3b332d;color:#fff;text-decoration:none;font-weight:700;font-size:14px;border:0}.btn.light{background:#f3ece5;color:#4d4036}.btn.full{grid-column:span 2;background:var(--accent)}
+    .account{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:10px 0;background:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}.copy{border:0;border-radius:999px;padding:8px 12px;background:#eee2d7;color:#5a4534;font-weight:700}
+    .footer{padding:36px 24px 48px;text-align:center;color:var(--muted);font-size:12px}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-fallback">images/cover.jpg 파일을 넣으면<br>메인 웨딩사진으로 표시됩니다</div>
+      <div class="hero-content">
+        <div class="eyebrow">WEDDING INVITATION</div>
+        <h1 class="names">Groom & Bride</h1>
+        <div class="date">2026.11.15 SUN 12:00</div>
+      </div>
+      <div class="scroll">아래로 스크롤</div>
+    </header>
+
+    <section class="center">
+      <h2 class="title">Invite you</h2>
+      <p class="message">서로의 가장 좋은 친구가 되어<br>평생을 함께하려 합니다.<br><br>소중한 걸음으로 축복해 주시면<br>더없는 기쁨으로 간직하겠습니다.</p>
+    </section>
+
+    <section>
+      <h2 class="ko-title center">예식 안내</h2>
+      <div class="card">
+        <div class="info-row"><b>일시</b><span>2026년 11월 15일 일요일 오후 12시</span></div>
+        <div class="info-row"><b>장소</b><span>청주 아름다운웨딩홀</span></div>
+        <div class="info-row"><b>주소</b><span>충북 청주시 서원구 가장로 397-2</span></div>
+      </div>
+      <div class="calendar" aria-label="달력 장식">
+        <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
+        <div></div><div></div><div></div><div></div><div></div><div></div><div class="day">1</div>
+        <div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div>
+        <div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day wedding">15</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="ko-title center">사진</h2>
+      <div class="gallery">
+        <div class="photo wide">images/gallery1.jpg</div>
+        <div class="photo">gallery2.jpg</div>
+        <div class="photo">gallery3.jpg</div>
+        <div class="photo">gallery4.jpg</div>
+        <div class="photo">gallery5.jpg</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="ko-title center">오시는 길</h2>
+      <div class="mapbox">
+        <div class="pin">📍</div>
+        <div class="map-label"><b>청주 아름다운웨딩홀</b><br>충북 청주시 서원구 가장로 397-2</div>
+      </div>
+      <div class="buttons">
+        <a class="btn" href="https://map.kakao.com/?q=%EC%B2%AD%EC%A3%BC%20%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4%EC%9B%A8%EB%94%A9%ED%99%80" target="_blank" rel="noopener">카카오맵</a>
+        <a class="btn light" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%20%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4%EC%9B%A8%EB%94%A9%ED%99%80" target="_blank" rel="noopener">네이버지도</a>
+        <a class="btn light" href="https://www.tmap.co.kr/" target="_blank" rel="noopener">티맵</a>
+        <a class="btn" href="tel:0432502000">웨딩홀 전화</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="ko-title center">마음 전하실 곳</h2>
+      <div class="account"><span>신랑측 000-0000-0000</span><button class="copy" data-copy="000-0000-0000">복사</button></div>
+      <div class="account"><span>신부측 000-0000-0000</span><button class="copy" data-copy="000-0000-0000">복사</button></div>
+    </section>
+
+    <section>
+      <h2 class="ko-title center">공유하기</h2>
+      <p class="small center">카카오 JavaScript 키를 넣으면 버튼 2개짜리 카카오 공유 카드로 전송됩니다.</p>
+      <div class="buttons"><button class="btn full" type="button" onclick="shareKakao()">카카오톡으로 공유하기</button></div>
+    </section>
+
+    <div class="footer">Groom & Bride Wedding Invitation</div>
+  </main>
+  <div class="toast" id="toast">복사되었습니다</div>
+
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    // TODO: Kakao Developers에서 발급받은 JavaScript 키로 교체
+    const KAKAO_JS_KEY = 'YOUR_KAKAO_JAVASCRIPT_KEY';
+    const WEDDING_URL = 'https://cnd3942.github.io/wedding/';
+    const COVER_URL = 'https://cnd3942.github.io/wedding/images/cover.jpg';
+
+    if (window.Kakao && KAKAO_JS_KEY !== 'YOUR_KAKAO_JAVASCRIPT_KEY') Kakao.init(KAKAO_JS_KEY);
+
+    function shareKakao(){
+      if (!window.Kakao || KAKAO_JS_KEY === 'YOUR_KAKAO_JAVASCRIPT_KEY') {
+        alert('Kakao JavaScript 키를 입력하면 카카오 공유가 작동합니다.');
+        return;
+      }
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '신랑 ♥ 신부 결혼합니다',
+          description: '2026년 11월 15일 일요일 오후 12시 · 청주 아름다운웨딩홀',
+          imageUrl: COVER_URL,
+          link: { mobileWebUrl: WEDDING_URL, webUrl: WEDDING_URL }
+        },
+        buttons: [
+          { title: '청첩장 보기', link: { mobileWebUrl: WEDDING_URL, webUrl: WEDDING_URL } },
+          { title: '위치 안내', link: { mobileWebUrl: 'https://map.kakao.com/?q=청주 아름다운웨딩홀', webUrl: 'https://map.kakao.com/?q=청주 아름다운웨딩홀' } }
+        ]
+      });
+    }
+
+    document.querySelectorAll('.copy').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const t = document.getElementById('toast');
+        t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1300);
+      });
+    });
+  </script>
+</body>
+</html>
